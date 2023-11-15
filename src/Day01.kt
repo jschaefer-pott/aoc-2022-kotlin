@@ -1,17 +1,20 @@
 fun main() {
-    fun part1(input: List<String>): Int {
-        return input.size
-    }
-
-    fun part2(input: List<String>): Int {
-        return input.size
-    }
 
     // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
+    val input = readInput("01")
+    val result = mutableListOf<Int>()
+    var current = 0
+    input.forEach { calories ->
+        if (calories.isEmpty()) {
+            result.add(current)
+            current = 0
+        } else {
+            current += calories.toInt()
+        }
+    }
 
-    val input = readInput("Day01")
-    part1(input).println()
-    part2(input).println()
+    println("Biggest single elf calorie count: ${result.max()}")
+    result.sortDescending()
+    println("Total calorie count of top three elves: ${result.take(3).sum()}")
+
 }
