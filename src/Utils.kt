@@ -19,3 +19,24 @@ fun String.md5() = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteA
  * The cleaner shorthand for printing output.
  */
 fun Any?.println() = println(this)
+
+interface Challenge {
+
+    fun calculate() {
+        val input = readInput(this.javaClass.name.takeLast(2))
+
+        firstPart(input)
+
+        secondPart(input)
+    }
+
+    fun calculate(input: List<String>) {
+
+        firstPart(input)
+
+        secondPart(input)
+    }
+
+    fun firstPart(input: List<String>)
+    fun secondPart(input: List<String>)
+}
