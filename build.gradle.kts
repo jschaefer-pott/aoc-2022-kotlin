@@ -6,6 +6,12 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
+    implementation("org.junit.jupiter:junit-jupiter-api:5.10.1")
+
+}
+
 tasks {
     sourceSets {
         main {

@@ -1,16 +1,18 @@
 fun main() {
-//    val input = """
-//        vJrwpWtwJgWrhcsFMMfFFhFp
-//        jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
-//        PmmdzqPrVvPwwTWBwg
-//        wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
-//        ttgJtRGJQctTZtZT
-//        CrZsJsPPZsGzwwsLwLmpwMDw
-//    """.trimIndent().lines()
+    val input = """
+        vJrwpWtwJgWrhcsFMMfFFhFp
+        jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
+        PmmdzqPrVvPwwTWBwg
+        wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
+        ttgJtRGJQctTZtZT
+        CrZsJsPPZsGzwwsLwLmpwMDw
+    """.trimIndent().lines()
 //    Results should be 157 and 70 for above input
-//    Day03().calculate(input)
+    Day03().calculate(input, 157, 70)
 
-    Day03().calculate()
+    val (firstPart, secondPart) = Day03().calculate()
+    firstPart.println()
+    secondPart.println()
 }
 
 class Day03 : Challenge {
@@ -23,7 +25,7 @@ class Day03 : Challenge {
         private val UPPERCASE_LETTERS_OFFSET = 38
     }
 
-    override fun firstPart(input: List<String>) {
+    override fun firstPart(input: List<String>): Int {
         val result = input.flatMap { rucksack ->
             val firstCompartment = rucksack.take(rucksack.length / 2)
             val secondCompartment = rucksack.takeLast(rucksack.length / 2)
@@ -44,10 +46,11 @@ class Day03 : Challenge {
 
             duplicatePriorities.filterNot { it == 0 }
         }
-        result.sum().println()
+
+        return result.sum()
     }
 
-    override fun secondPart(input: List<String>) {
+    override fun secondPart(input: List<String>): Int {
         val grouped = input.chunked(3)
         val result = grouped.flatMap {
             val firstRucksack = it[0]
@@ -64,7 +67,7 @@ class Day03 : Challenge {
             commonItems.map { item -> calculatePriorityFromCharacterCode(item.code) }
         }
 
-        result.sum().println()
+        return result.sum()
     }
 
 
